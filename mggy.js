@@ -80,8 +80,8 @@ async function collectBottle1() {
     };
     let result = await httpRequest(options, `水瓶`);
 
-     if (result.status == 50014) {
-        DoubleLog(`\n ${result.message}`);
+     if (result.code == 200) {
+        DoubleLog(`\n ${result.data.errmsg}`);
      } else if (result.data.errcode == 7) {
         DoubleLog(`\n 收集瓶:  暂无可领取`);
     } else if (result.data.gainaward.type == 0) {
