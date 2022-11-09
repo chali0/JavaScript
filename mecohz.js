@@ -4,7 +4,7 @@
  */
  
 const $ = Env('Meco真茶局互助');
-const notify = $.isNode() ? require('./sendNotify') : ''; 
+const notify = $.isNode() ? require('./sendNotify') : '';      // 这里是 node（青龙属于node环境）通知相关的
 const Notify = 0; //0为关闭通知，1为打开通知,未添加
 const help = 1; //0为关闭互助，1为打开互助,默认为0
 const debug = 0; //0为关闭调试，1为打开调试,默认为0
@@ -15,39 +15,38 @@ let msg = '';
 //////////////////////////////////////////////////////////////////
 !(async () => {
  
-	if (!(await Envs()))
+	if (!(await Envs()))  	
 		return;
 	else {
-	  	console.log(`\n⚠️开始互助之前务必先运行一次主脚本`)
+	  	console.log(`\n⚠️请务必先运行一次主脚本`)
 
+		console.log(`\n=========================================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
+			new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 +
+			8 * 60 * 60 * 1000).toLocaleString()} \n=========================================\n`);
+ 
 		console.log(`\n=================== 共找到 ${mecohzArr.length} 个账号 ===================`)
          
 		for (let index = 0; index < mecohzArr.length; index++) {
 			let num = index + 1
             mecohz = mecohzArr[index]
-           	//mecohzArr[index] = mecohz
+			mecohzArr[index] = mecohz
 		}
-		if(hz){
+		if(help){
 			for (let num1 = 0; num1 < mecohzArr.length; num1++){
-
 			console.log(`【第${num1+1}个账号结果】`)
-
 			for(let num2 = 0; num2 < mecohzArr.length; num2++){
-
 				if(num1 != num2){
 					await hz(num1,num2);
-                    await $.wait(2 * 1000);
+                    await $.wait(5 * 1000);
 				}
 			}
 		}
 		}
-
 	}
  
 })()
 	.catch((e) => console.log(e))
 	.finally(() => $.done())
-
 function hz(num1,num2) {
 	return new Promise((resolve) => {
 		let url = {
@@ -81,6 +80,59 @@ function hz(num1,num2) {
 		},)
 	})
 }
+
+
+
+
+
+function songsiliao(num1,num2) {
+	return new Promise((resolve) => {
+		let url = {
+			url: `https://zm.t7a.cn/api/subhorseplayer.php?safe=${mecohzArr[num1]}&mecohz=${mecohzArr[num2]}&type=2`,   
+			headers: {          
+				'Host' : 'zm.t7a.cn',
+                'user-agent' : 'Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3235 MMWEBSDK/20220204 Mobile Safari/537.36 MMWEBID/6242 MicroMessenger/8.0.20.2080(0x28001435) Process/appbrand0 WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wx532ecb3bdaaf92f9'
+			},
+			// body: '',     
+ 
+		} 
+		$.get(url, async (error, response, data) => {    
+			try {
+				result = JSON.parse(data)
+                
+				console.log(result.msg)
+
+
+			} catch (e) {
+				console.log(e)
+			} finally {
+				resolve();
+			}
+		}, )
+	})
+}
+
+
+
+//#region 固定代码 可以不管他
+// ============================================变量检查============================================ \\
+async function Envs() {
+	if (mecohz) {
+		if (mecohz.indexOf("@") != -1) {
+			mecohz.split("@").forEach((item) => {
+				mecohzArr.push(item);
+			});
+		} else {
+			mecohzArr.push(mecohz);
+		}
+	} else {
+		console.log(`\n 【${$.name}】：未填写变量 mecohz`)
+		return;
+	}
+ 
+	return true;
+}
+ 
 // ============================================发送消息============================================ \\
 async function SendMsg(message) {
 	if (!message)
