@@ -81,40 +81,6 @@ function hz(num1,num2) {
 	})
 }
 
-
-
-
-
-function songsiliao(num1,num2) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://zm.t7a.cn/api/subhorseplayer.php?safe=${mecohzArr[num1]}&mecohz=${mecohzArr[num2]}&type=2`,   
-			headers: {          
-				'Host' : 'zm.t7a.cn',
-                'user-agent' : 'Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3235 MMWEBSDK/20220204 Mobile Safari/537.36 MMWEBID/6242 MicroMessenger/8.0.20.2080(0x28001435) Process/appbrand0 WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wx532ecb3bdaaf92f9'
-			},
-			// body: '',     
- 
-		} 
-		$.get(url, async (error, response, data) => {    
-			try {
-				result = JSON.parse(data)
-                
-				console.log(result.msg)
-
-
-			} catch (e) {
-				console.log(e)
-			} finally {
-				resolve();
-			}
-		}, )
-	})
-}
-
-
-
-//#region 固定代码 可以不管他
 // ============================================变量检查============================================ \\
 async function Envs() {
 	if (mecohz) {
