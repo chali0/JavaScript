@@ -1,6 +1,6 @@
 /**
  * 微信小程序：Meco真茶局互助  取openi=xxxx 值用@连接  (不需要openid=)
- * 变量格式 export mecohz = 'XXXXXX'
+ * 变量格式 export mecohz = 'XXXXXX' 
  */
  
 const $ = Env('Meco真茶局互助');
