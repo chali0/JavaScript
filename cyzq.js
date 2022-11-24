@@ -5,7 +5,7 @@
 格式：export cycg="authorization=Bearer xxxxxx@Bearer xxxxxx"  
 
 CGkey: 脚本卡密   电报机器人 @CGKEYBot 处获取 (所有脚本通用)
-格式：export CGkey="xxxxxxxx"
+格式：export CGkey="xxxxxxx"
 
 */
 
