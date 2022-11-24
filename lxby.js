@@ -2,7 +2,7 @@
 联想百应 vx小程序
 
 变量：捉包https://hms.cignacmb.com域名headars里的Authorization 多账号换行隔开
-格式：export lxby="Authorization=Bearer_xxxxxx"  
+格式：export lxby="Authorization=Bearer_xxxxx"  
 
 CGkey: 脚本卡密   电报机器人 @CGKEYBot 处获取 (所有脚本通用)
 格式：export CGkey="xxxxxxxx"
