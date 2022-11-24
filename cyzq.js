@@ -1,5 +1,5 @@
 /*
-微信小程序: 成语闯关赚钱版
+微信小程序: 成语闯关赚钱
 
 变量：捉包https://idiom.ijiaweb.com域名headars里的authorization 多账号换行隔开
 格式：export cycg="authorization=Bearer xxxxxx@Bearer xxxxxx"  
